@@ -2,7 +2,8 @@ version: '3.7'
 
 services:
   database:
-    image: mysql
+    build: ./docker/mysql
+    image: db-app-db
     ports:
       - "3306:3306"
     environment:
