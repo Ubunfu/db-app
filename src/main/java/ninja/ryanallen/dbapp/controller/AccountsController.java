@@ -1,32 +1,30 @@
 package ninja.ryanallen.dbapp.controller;
 
 import ninja.ryanallen.dbapp.entity.Account;
+import ninja.ryanallen.dbapp.service.AccountsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 public class AccountsController {
 
     @Autowired
-    @Qualifier("accounts")
-    private ReactiveMongoTemplate accountsMongoTemplate;
+    private AccountsService accountsService;
 
     @GetMapping("/accounts")
-    public Flux<Account> getAccounts() {
-        return accountsMongoTemplate.findAll(Account.class);
+    public List<Account> getAccounts() {
+        return accountsService.getAllAccounts();
     }
 
     @GetMapping("/account")
-    public Mono<? extends Account> getAccount(@RequestParam String id) {
-        return accountsMongoTemplate.findById(id, Account.class);
+    public Account getAccount(@RequestParam String email) {
+        return accountsService.getAccount(email);
     }
 
     @PostMapping("/account")
-    public Mono<? extends Account> createAccount(@RequestBody Account account) {
-        return accountsMongoTemplate.save(account);
+    public void createAccount(@RequestBody Account account) {
+        accountsService.addAccount(account);
     }
 }
