@@ -1,18 +1,14 @@
 # DB-App [![Build Status](https://travis-ci.com/Ubunfu/db-app.svg?branch=master)](https://travis-ci.com/Ubunfu/db-app)
-Sample Boot app that connects to various databases and such.
+Sample Boot app with a database.
+
+### Build and Test
+1. Use Maven to build and test (uses embedded H2 database):
+    ```bash
+   mvn clean install 
+   ```
 
 ### Starting up locally
-1. Build the application:
+1. Bring up the docker-compose environment:
     ```bash
-    mvn clean install
-    ```
-
-2. Start up the local MongoDB container:
-    ```bash
-   docker-compose up 
-   ```
-   
-3. Start up the application:
-    ```bash
-   mvn spring-boot:run
+    docker-compose up --build
     ```
