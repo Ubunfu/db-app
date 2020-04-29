@@ -3,14 +3,13 @@ version: '3.7'
 services:
   app:
     build: .
-    image: db-app
+    image: ubunfu/db-app:latest
     ports:
       - "8080:8080"
     depends_on:
       - "database"
     restart: on-failure
     environment:
-      SPRING_PROFILES_ACTIVE: "mysql"
       SPRING_DATASOURCE_URL: "jdbc:mysql://db-app_database_1/db-app"
       SPRING_DATASOURCE_USERNAME: "user"
       SPRING_DATASOURCE_PASSWORD: "password"

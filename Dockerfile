@@ -1,9 +1,9 @@
-FROM openjdk:8-jdk-alpine
-
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
+FROM maven:3-openjdk-8-slim
 
 EXPOSE 8080/tcp
 
-COPY target/*.jar /app/app.jar
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+WORKDIR /app/
+COPY . /app/
+
+RUN ["mvn", "package"]
+ENTRYPOINT ["mvn", "spring-boot:run"]
