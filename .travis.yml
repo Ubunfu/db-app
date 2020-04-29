@@ -5,5 +5,11 @@ branches:
     - develop
     - /^release/*$/
     - /^hotfix/*$/
-notifications:
-  webhooks: https://discordapp.com/api/webhooks/705067071104352399/pvGtl1s5ZktxOo7V3PcCyXI4Etl7eD2OczCxFvmfHVph1e50VjiZD-BK2X2OCc163_K3
+after_success:
+  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh success $WEBHOOK_URL
+after_failure:
+  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh failure $WEBHOOK_URL
