@@ -5,3 +5,5 @@ branches:
     - develop
     - /^release/*$/
     - /^hotfix/*$/
+notifications:
+  webhooks: https://discordapp.com/api/webhooks/705067071104352399/pvGtl1s5ZktxOo7V3PcCyXI4Etl7eD2OczCxFvmfHVph1e50VjiZD-BK2X2OCc163_K3
